@@ -23,19 +23,23 @@ import javax.xml.transform.stream.StreamResult;
  *
  * @author Vespertino
  */
-public class XML_Parser {
+public class XML_DOM_Parser implements Persistencia{
     
-    public static final String RUTAGUARDADO = "datos.txt";
+    private String ruta;
+    
+    public XML_DOM_Parser(String ruta){
+        this.ruta = ruta;
+    }
     
     // La desventaja de DOM es que carga todo en memoria
-    public static Contacto[] parsearXmlAContactosMedianteDOM() {
-        if(RUTAGUARDADO == null || RUTAGUARDADO.isBlank())return null;
+    public Contacto[] parsear_XML_A_Contactos() {
+        if(ruta == null || ruta.isBlank())return null;
         
         // Crea una fábrica de documentos
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         Document documento = null;
         try{
-              documento = dbFactory.newDocumentBuilder().parse(new File(RUTAGUARDADO));
+              documento = dbFactory.newDocumentBuilder().parse(new File(ruta));
         }catch(Exception e){
               return null;
         }
@@ -52,12 +56,13 @@ public class XML_Parser {
               int telefono = Integer.parseInt(elementoContacto.getElementsByTagName("telefono").item(0).getTextContent());
               contactos[i] = new Contacto(nombre, telefono);
         }
+        System.out.println("\nContactos cargados mediante DOM.\n");
         return contactos;
     }
     
-    public static Boolean convertirContactosAXMLMedianteDOM(Contacto[] contactos) {
+    public boolean parsear_Contactos_A_XML(Contacto[] contactos) {
         if (contactos == null || contactos.length == 0) {
-            return null;
+            return false;
         }
         try {
             // Crea una fábrica de documentos
@@ -92,18 +97,15 @@ public class XML_Parser {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File(RUTAGUARDADO));
+            StreamResult result = new StreamResult(new File(ruta));
             transformer.transform(source, result);
 
+            System.out.println("\nContactos guardados mediante DOM.\n");
             return true;
         } catch (ParserConfigurationException | javax.xml.transform.TransformerException e) {
             e.printStackTrace();
             return false;
         }
-    }
-    
-    public static Contacto[] parsearXmlAContactosMedianteSAX() {
-        
     }
 
 }

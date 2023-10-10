@@ -5,6 +5,7 @@
 package com.mycompany.contactos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,14 +15,38 @@ public class Modelo { // Datos y lógica de negocio
     
     private Agenda agenda;
     
-    public Modelo() {
+    private Persistencia persistencia;
+    
+    private Modelo() {
         agenda = new Agenda();
+    }
+    
+    public static Modelo newModeloDOM(String ruta){
+        Modelo m = new Modelo();
+        m.setPersistencia(new XML_DOM_Parser(ruta));
+        return m;
+    }
+    
+    public static Modelo newModeloSAX(String ruta){
+        Modelo m = new Modelo();
+        m.setPersistencia(new XML_SAX_Parser(ruta));
+        return m;
+    }
+    
+    public static Modelo newModeloStAX(String ruta){
+        Modelo m = new Modelo();
+        m.setPersistencia(new XML_StAX_Parser(ruta));
+        return m;
+    }
+    
+    private void setPersistencia(Persistencia p){
+        persistencia = p;
     }
     
     public boolean cagaContactosDesde(boolean sustituir){
         
         //Transformo los datos de disco en un Array de Contactos
-        Contacto[] contactos = XML_Parser.parsearXmlAContactosMedianteDOM();
+        Contacto[] contactos = persistencia.parsear_XML_A_Contactos();
         if(contactos == null) return false;
         
         if(sustituir) agenda.reseteaAgenda();
@@ -39,7 +64,7 @@ public class Modelo { // Datos y lógica de negocio
             System.out.println("La lista de contactos está vacía");
             return false;
         }
-        XML_Parser.convertirContactosAXMLMedianteDOM(agenda.getContactos());
+        persistencia.parsear_Contactos_A_XML(agenda.getContactos());
         return true;
     }
     

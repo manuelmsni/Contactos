@@ -13,9 +13,9 @@ public class Controlador {
     Modelo mod;
     Vista vis;
 
-    public Controlador(){
-        mod = new Modelo();
-        vis = new Vista();
+    public Controlador(Modelo m, Vista v){
+        mod = m;
+        vis = v;
         bucleDePrograma();
     }
     

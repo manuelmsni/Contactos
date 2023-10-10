@@ -20,6 +20,9 @@ public class Contacto {
         this.telefono = telefono;
     }
     
+    public Contacto(){
+    }
+    
     public String getNombre(){
         return nombre;
     }

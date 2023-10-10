@@ -14,9 +14,14 @@ import java.nio.file.Paths;
  *
  * @author Vespertino
  */
-public class Persistencia {
+public interface Persistencia {
+
+    public Contacto[] parsear_XML_A_Contactos();
     
-    public static String leeFichero(String filePath){
+    public boolean parsear_Contactos_A_XML(Contacto[] contactos);
+    
+    /*
+    private static String leeFichero(String filePath){
         try {
             byte[] bytes = Files.readAllBytes(Paths.get(filePath));
             return new String(bytes, StandardCharsets.UTF_8);
@@ -26,7 +31,7 @@ public class Persistencia {
         return null;
     }
     
-   public static boolean guardarDatos(String datos){
+   private static boolean guardarDatos(String datos){
         try (FileWriter escritor = new FileWriter("datos.txt")) {
             escritor.write(datos);
             System.out.println("Los contactos se han guardado.");
@@ -36,4 +41,5 @@ public class Persistencia {
         }
         return false;
     }
+    */
 }
