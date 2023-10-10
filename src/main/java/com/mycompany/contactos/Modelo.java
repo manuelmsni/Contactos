@@ -82,4 +82,10 @@ public class Modelo { // Datos y lógica de negocio
         System.out.print(agenda.toString());
     }
     
+    public boolean borraContacto(int telefono){
+        Contacto c = agenda.getContactoPorTelefono(telefono);
+        if(c == null) return false;
+        return agenda.borraContacto(c);
+    }
+    
 }

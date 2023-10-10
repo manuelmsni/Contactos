@@ -39,7 +39,7 @@ public class Controlador {
                 actualizaContacto();
                 break;
             case 4: // Borrar contacto
-
+                borraContacto();
                 break;
             case 5: // Listar contactos
                 mod.listaContactos();
@@ -89,6 +89,15 @@ public class Controlador {
             System.out.println("No se ha podido modificar el contacto.");
         }else{
             System.out.println("Contacto modificado");
+        }
+    }
+    
+    public void borraContacto(){
+        int num = vis.solicitaEntero("Introduce el número del contacto a modificar:");
+        if(mod.borraContacto(num)){
+            System.out.println("Contacto borrado.");
+        } else {
+            System.out.println("No se ha podido borrar el contacto.");
         }
     }
 

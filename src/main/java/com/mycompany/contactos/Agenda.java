@@ -71,6 +71,11 @@ public class Agenda extends AbstractListModel<Contacto>{
         return false;
     }
     
+    public boolean borraContacto(Contacto c){
+        if(c == null) return false;
+        return contactos.remove(c);
+    }
+    
     public Contacto buscaContactoPorTelefono(int telefono){
         int pos = contactos.indexOf(new Contacto("", telefono));
         if(pos == -1)return null;
