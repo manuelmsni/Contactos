@@ -4,13 +4,14 @@
  */
 package com.mycompany.contactos;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Vespertino
  */
-public class Contacto {
+public class Contacto implements Serializable{
     
     String nombre;
     int telefono;
@@ -43,9 +44,9 @@ public class Contacto {
     }
     
     public String toString() {
-        return "Contacto{" +
-                "nombre='" + nombre + '\'' +
-                ", telefono=" + telefono +
+        return "Contacto:{" +
+                "nombre:'" + nombre + '\'' +
+                ", telefono:" + telefono +
                 '}';
     }
     

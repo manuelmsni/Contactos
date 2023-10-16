@@ -16,9 +16,9 @@ import java.nio.file.Paths;
  */
 public interface Persistencia {
 
-    public Contacto[] parsear_XML_A_Contactos();
+    public Contacto[] recuperaContactos();
     
-    public boolean parsear_Contactos_A_XML(Contacto[] contactos);
+    public boolean guardaContactos(Contacto[] contactos);
     
     /*
     private static String leeFichero(String filePath){

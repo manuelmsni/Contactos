@@ -32,7 +32,7 @@ public class XML_DOM_Parser implements Persistencia{
     }
     
     // La desventaja de DOM es que carga todo en memoria
-    public Contacto[] parsear_XML_A_Contactos() {
+    public Contacto[] recuperaContactos() {
         if(ruta == null || ruta.isBlank())return null;
         
         // Crea una fábrica de documentos
@@ -60,7 +60,7 @@ public class XML_DOM_Parser implements Persistencia{
         return contactos;
     }
     
-    public boolean parsear_Contactos_A_XML(Contacto[] contactos) {
+    public boolean guardaContactos(Contacto[] contactos) {
         if (contactos == null || contactos.length == 0) {
             return false;
         }

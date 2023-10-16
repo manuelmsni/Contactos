@@ -44,6 +44,12 @@ public class Contactos {
             case "StAX":
                 m = Modelo.newModeloStAX(rutaXML);
                 break;
+            case "Obj":
+                m = Modelo.newModeloObjetos(rutaBIN);
+                break;
+            case "TXT":
+                m = Modelo.newModeloObjetos(rutaTXT);
+                break;
             default:
                 m = Modelo.newModeloDOM(rutaXML);
                 break;
@@ -51,13 +57,14 @@ public class Contactos {
         
         Controlador c = new Controlador(m, new Vista());
         
+        /*
         try {
-            OutputStream archivoSalida = new FileOutputStream("configuracion.properties");
+            OutputStream archivoSalida = new FileOutputStream("configuracion.conf");
             propiedades.store(archivoSalida, "Configuración del programa");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
+        */
         
     }
 }

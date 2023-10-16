@@ -39,6 +39,18 @@ public class Modelo { // Datos y lógica de negocio
         return m;
     }
     
+    public static Modelo newModeloObjetos(String ruta){
+        Modelo m = new Modelo();
+        m.setPersistencia(new Object_Parser(ruta));
+        return m;
+    }
+    
+    public static Modelo newModeloTXT(String ruta){
+        Modelo m = new Modelo();
+        m.setPersistencia(new TXT_Parser(ruta));
+        return m;
+    }
+    
     private void setPersistencia(Persistencia p){
         persistencia = p;
     }
@@ -46,7 +58,7 @@ public class Modelo { // Datos y lógica de negocio
     public boolean cagaContactosDesde(boolean sustituir){
         
         //Transformo los datos de disco en un Array de Contactos
-        Contacto[] contactos = persistencia.parsear_XML_A_Contactos();
+        Contacto[] contactos = persistencia.recuperaContactos();
         if(contactos == null) return false;
         
         if(sustituir) agenda.reseteaAgenda();
@@ -64,7 +76,7 @@ public class Modelo { // Datos y lógica de negocio
             System.out.println("La lista de contactos está vacía");
             return false;
         }
-        persistencia.parsear_Contactos_A_XML(agenda.getContactos());
+        persistencia.guardaContactos(agenda.getContactos());
         return true;
     }
     

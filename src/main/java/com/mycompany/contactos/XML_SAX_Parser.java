@@ -30,7 +30,7 @@ public class XML_SAX_Parser implements Persistencia{
         this.ruta = ruta;
     }
 
-    public Contacto[] parsear_XML_A_Contactos() {
+    public Contacto[] recuperaContactos() {
         List<Contacto> contactos = new ArrayList<>();
 
         try {
@@ -77,7 +77,7 @@ public class XML_SAX_Parser implements Persistencia{
         return contactos.toArray(new Contacto[0]);
     }
 
-    public boolean parsear_Contactos_A_XML(Contacto[] contactos) {
+    public boolean guardaContactos(Contacto[] contactos) {
         try {
             OutputStream outputStream = new FileOutputStream(ruta);
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));

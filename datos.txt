@@ -1,19 +1,2 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Contactos>
-  <Contacto>
-    <nombre>Mañué</nombre>
-    <telefono>54243</telefono>
-  </Contacto>
-  <Contacto>
-    <nombre>Eso</nombre>
-    <telefono>31</telefono>
-  </Contacto>
-  <Contacto>
-    <nombre>segrd</nombre>
-    <telefono>345</telefono>
-  </Contacto>
-  <Contacto>
-    <nombre>af</nombre>
-    <telefono>235</telefono>
-  </Contacto>
-</Contactos>
+1
+Manuel;456345235
