@@ -33,9 +33,9 @@ public class Modelo { // Datos y lógica de negocio
         return m;
     }
     
-    public static Modelo newModeloStAX(String ruta){
+    public static Modelo newModeloJAXB(String ruta){
         Modelo m = new Modelo();
-        m.setPersistencia(new XML_StAX_Parser(ruta));
+        m.setPersistencia(new XML_JAXB_Parser(ruta));
         return m;
     }
     

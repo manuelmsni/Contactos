@@ -2,25 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.contactos;
 
+package com.mycompany.contactos;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import javax.xml.bind.annotation.XmlElement;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
 import java.io.File;
+
+
 /**
  *
  * @author manuelmsni
  */
-public class XML_JAXB_Parser {
+public class XML_JAXB_Parser implements Persistencia{
         private String ruta;
 
     public XML_JAXB_Parser(String ruta) {
         this.ruta = ruta;
     }
-
+    
     public Contacto[] recuperaContactos() {
         if (ruta == null || ruta.isBlank()) return null;
 
@@ -62,4 +68,19 @@ public class XML_JAXB_Parser {
             return false;
         }
     }
+    
+    @XmlRootElement
+    public class ContactoWrapper {
+        private Contacto[] contactos;
+
+        @XmlElement(name = "contacto")
+        public Contacto[] getContactos() {
+            return contactos;
+        }
+
+        public void setContactos(Contacto[] contactos) {
+            this.contactos = contactos;
+        }
+    }
+    
 }

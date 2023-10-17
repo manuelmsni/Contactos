@@ -41,14 +41,14 @@ public class Contactos {
             case "SAX":
                 m = Modelo.newModeloSAX(rutaXML);
                 break;
-            case "StAX":
-                m = Modelo.newModeloStAX(rutaXML);
+            case "JAXB":
+                m = Modelo.newModeloJAXB(rutaXML);
                 break;
             case "Obj":
                 m = Modelo.newModeloObjetos(rutaBIN);
                 break;
             case "TXT":
-                m = Modelo.newModeloObjetos(rutaTXT);
+                m = Modelo.newModeloTXT(rutaTXT);
                 break;
             default:
                 m = Modelo.newModeloDOM(rutaXML);

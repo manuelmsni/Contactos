@@ -43,8 +43,8 @@ public class XML_SAX_Parser implements Persistencia{
                 public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
                     elementoActual = qName;
                     if ("Contacto".equals(qName)) {
-                        contacto = new Contacto("", 0);
-                    }
+                        contacto = new Contacto();
+                    } 
                 }
 
                 public void characters(char[] ch, int start, int length) throws SAXException {
@@ -78,39 +78,9 @@ public class XML_SAX_Parser implements Persistencia{
     }
 
     public boolean guardaContactos(Contacto[] contactos) {
-        try {
-            OutputStream outputStream = new FileOutputStream(ruta);
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
-
-            writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-            writer.newLine();
-            writer.write("<Contactos>");
-            writer.newLine();
-
-            for (Contacto contacto : contactos) {
-                writer.write("  <Contacto>");
-                writer.newLine();
-
-                writer.write("    <nombre>" + contacto.getNombre() + "</nombre>");
-                writer.newLine();
-                writer.write("    <telefono>" + contacto.getTelefono() + "</telefono>");
-                writer.newLine();
-
-                writer.write("  </Contacto>");
-                writer.newLine();
-            }
-
-            writer.write("</Contactos>");
-            writer.newLine();
-            writer.flush();
-            writer.close();
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        System.out.println("\nContactos guardados mediante SAX.\n");
-        return true;
+        XML_DOM_Parser persistencia = new XML_DOM_Parser(ruta);
+        System.out.println("\nSe ha empleado DOM para guardar los contactos.\n");
+        return persistencia.guardaContactos(contactos);
     }
     
 }
